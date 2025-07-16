@@ -1,0 +1,509 @@
+/* Variables de colores */
+:root {
+	--grisAzulado: #607d8b; /* Gris azulado oscuro */
+	--celesteClaro: #90caf9; /* Azul claro */
+	--rosaPalido: #ffebcd; /* Rosa pálido */
+	--blancoCrema: #fff5ee; /* Blanco crema */
+	--blanco: #ffffff; /* Blanco */
+	--doradoSuave: #ffd700; /* Dorado suave */
+	--azulOscuro: #153157; /* Azul más oscuro */
+	--dorado: #bd9c5e;
+}
+
+/* Reset y configuración básica */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: "Dancing Script", cursive;
+	/* background-color: var(--azulOscuro); */
+    
+	/* background-image: url("./assets/img/elegant_hand_painted_floral_watercolour_background_2804.jpg"); */
+	/* background-image: url("./assets/img/fondo_celeste_claro_dos.png"); */
+	/* background-image: url("./assets/img/fondo_elegante.png"); */
+	background-image: url("./assets/img/fondo_pantalla.png");
+	color: var(--dorado);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-weight: bolder;
+}
+
+/* Header */
+header {
+	background-image: url("./assets/img/fondo2.jpeg");
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+	color: var(--blancoCrema);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+@media (min-width: 768px) {
+	header {
+		background-position: center top; /* o ajusta según el contenido importante */
+		background-size: contain; /* o 'cover' si prefieres, depende del diseño */
+		background-repeat: no-repeat;        
+	}
+    body {
+        background-image: url("./assets/img/fondo_celeste_claro_dos.png");
+    }
+}
+
+header h1 {
+	font-family: "Great Vibes", cursive;
+	font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+/* Secciones generales */
+.section {
+	padding: 2rem 1rem;
+	text-align: center;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+/* CALENDARIO */
+.calendar {
+	padding-top: 0;
+	font-size: 1.5em; 	
+}
+
+.calendario {
+    max-width: 100%; /* Para que no exceda el contenedor */
+    width: auto;     /* Mantiene proporción */
+    height: auto;
+    margin: 1rem auto; /* Centra la imagen horizontalmente */
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .calendario {
+        width: 80%; /* O ajusta el porcentaje según necesites */
+        max-width: 400px; /* Límite máximo */
+    }
+}
+
+/* FIN CALENDARIO */
+
+
+/* Imagen anillo */
+.anillo {
+	padding: 1em 0; /* Reducimos el espacio superior e inferior */
+	text-align: center;
+}
+
+.anillo img {
+	max-width: 120px; /* Tamaño más pequeño */
+	height: auto; /* Mantiene proporción */
+}
+/* En escritorio, vuelve al tamaño original */
+@media (min-width: 768px) {
+	.anillo {
+		padding: 2em;
+		text-align: center;
+	}
+}
+
+/* Mapa */
+iframe {
+	width: 100%;
+	height: 300px;
+	border: 0;
+	border-radius: 10px;
+	margin-top: 1rem;
+}
+
+/* Sección de cuenta regresiva */
+.section-countdown {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: "Playfair Display", serif;
+}
+
+#faltan {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.countdown {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.timer-box {
+    border: 2px solid #e0c7b3;
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    min-width: 90px;
+    transition: transform 0.3s ease;
+    text-align: center;
+    flex: 1 1 calc(25% - 15px); 
+    max-width: 120px;
+}
+
+.timer-label {
+    display: block;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .countdown {
+        justify-content: space-between;
+    }
+
+    .timer-box {
+        flex: 0 0 calc(50% - 7.5px); 
+        max-width: calc(50% - 7.5px);
+        font-size: 0.9rem;
+    }
+}
+
+/*FIN CUENTA REGRESIVA*/
+
+/* Botones WhatsApp */
+.whatsapp-buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	margin: 1em 0;
+}
+
+.contact-button {
+	display: flex;
+	align-items: center; /* Centra verticalmente */
+	justify-content: center; /* Centra horizontalmente */
+	background-color: #25d366;	
+	padding: 0.8em 1.5em;
+	border-radius: 30px;
+	gap: 10px; /* Espacio entre icono y texto */
+	width: 80%;
+	max-width: 350px; /* Limita el ancho máximo */
+	text-decoration: none;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+}
+
+.contact-button img {
+	width: 20px;
+	height: 20px;
+	object-fit: contain;
+	flex-shrink: 0; /* Evita que se achique */
+}
+
+.contact-button a {	
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1rem;
+	display: block;
+	text-align: center;
+    color: var(--azulOscuro);
+}
+
+.contact-button:hover {
+	background-color: #1ebe5d;
+}
+@media (min-width: 768px) {
+	.whatsapp-buttons {
+		flex-direction: row;
+	}
+}
+
+/* Carrusel Swiper */
+.swiper {
+	width: 90%;
+	max-width: 800px;
+	margin: 2rem auto;
+}
+
+.swiper-slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 15px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal de Bienvenida */
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.65);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.envelope-wrapper {
+	width: 90%;
+	max-width: 320px;
+	margin: 0 auto;
+}
+
+.envelope {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #fffdf8;
+	border: 2px solid #e0c7b3;
+	border-radius: 8px;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+}
+
+.letter {
+	position: relative;
+	z-index: 3;
+	height: 100%;
+	padding: 2em 1em;
+	text-align: center;
+	font-family: "Open Sans", sans-serif;
+}
+
+.letter h2 {
+	font-family: "Great Vibes", cursive;
+	font-size: 1.8rem;
+	color: var(--azulOscuro);
+	margin-bottom: 1.5em;
+}
+
+.letter h2 span {
+	font-size: 2em;
+	color: var(--dorado);
+}
+
+#start-music-btn {
+	background-color: var(--azulOscuro);
+	color: var(--dorado);
+	border: none;
+	padding: 12px 24px;
+	border-radius: 30px;
+	font-size: 1rem;
+	font-family: "Open Sans", sans-serif;
+	cursor: pointer;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.3s ease;
+	width: 80%;
+}
+
+#start-music-btn:hover {
+	background-color: var(--dorado);
+    color: var(--azulOscuro);
+}
+
+/* Botón de música */
+.music-toggle-btn {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: var(--azulOscuro);
+	color: var(--dorado);
+	border: none;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	z-index: 1000;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
+
+
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+	header h1 {
+		font-size: 2.5rem;
+	}
+	.slide {
+		width: 90%;
+	}
+	.timer-box {
+		font-size: 0.9rem;
+	}
+	.whatsapp-buttons a {
+		font-size: 0.9rem;
+		padding: 0.7em 1em;
+	}
+	.swiper {
+		width: 95%;
+	}
+}
+
+@media (max-width: 480px) {
+	header h1 {
+		font-size: 2rem;
+	}
+	.slide {
+		width: 95%;
+		margin: 0 0.5rem;
+	}
+	.timer-box {
+		min-width: 70px;
+		font-size: 0.8rem;
+	}
+	.section-countdown #faltan {
+		font-size: 1.5rem;
+	}
+}
+
+  /* === Hero Header Elegante === */
+.hero-header {
+    background-image: url("./assets/img/fondo2.jpeg"); /* Reutilizamos tu fondo actual */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--blancoCrema);
+    text-align: center;
+    padding: 6rem 1rem 4rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+}
+
+.hero-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    /* border: 2px dashed var(--doradoSuave); */
+    border-radius: 20px;
+    /* background: rgba(21, 49, 87, 0.5);  */
+    /* backdrop-filter: blur(4px); */
+}
+
+.title {
+
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--blancoCrema);
+    letter-spacing: 1px;
+    margin-bottom: 4rem;    
+    font-family: "Great Vibes", cursive;
+}
+
+.names {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 4rem;
+    color: var(--doradoSuave);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.invitation {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--blancoCrema);
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+
+
+@media (max-width: 768px) {
+    .names {
+        font-size: 2.5rem;
+    }
+    .title {
+        font-size: 1.8rem;
+    }
+    .invitation {
+        font-size: 1rem;
+    }
+}
+
+  /* === FIN Hero Header Elegante === */
+
+/* Estilos boton Ver mapa */
+
+.ubicacion-container {
+	text-align: center;
+	margin: 2rem auto;
+}
+
+/* Botón estilizado */
+.btn-ver-ubicacion {
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	background-color: var(--azulOscuro);
+	color: var(--dorado);
+	border: none;
+	padding: 12px 20px;
+	border-radius: 30px;
+	font-size: 1rem;
+	cursor: pointer;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	font-family: "Open Sans", sans-serif;
+}
+
+.btn-ver-ubicacion:hover {
+	background-color: var(--dorado);
+	color: var(--azulOscuro);
+	transform: scale(1.05);
+}
+
+/* Ícono animado */
+.animated-icon {
+	font-size: 1.2rem;
+	animation: bounce 1s infinite;
+}
+
+/* Animación de rebote */
+@keyframes bounce {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+}
+
+/* FIN Estilos boton Ver mapa */
