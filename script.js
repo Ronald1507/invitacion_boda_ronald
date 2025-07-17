@@ -9,18 +9,18 @@ function obtenerFechaBoda() {
 
 // Función para formatear la fecha como DD-MM-YYYY
 function formatearFecha(fecha) {
-    const dia = String(fecha.getDate()).padStart(2, '0');
-    const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
-    const anio = fecha.getFullYear();
+	const dia = String(fecha.getDate()).padStart(2, "0");
+	const mes = String(fecha.getMonth() + 1).padStart(2, "0"); // Los meses empiezan en 0
+	const anio = fecha.getFullYear();
 	const formato = `${dia}.${mes}.${anio}`;
-    return formato;
+	return formato;
 }
 
 // Función para formatear la hora como HH:MM (formato 24h)
 function formatearHora(fecha) {
-    const horas = String(fecha.getHours()).padStart(2, '0');
-    const minutos = String(fecha.getMinutes()).padStart(2, '0');
-    return `----- ${horas}:${minutos} hrs. -----`;
+	const horas = String(fecha.getHours()).padStart(2, "0");
+	const minutos = String(fecha.getMinutes()).padStart(2, "0");
+	return `----- ${horas}:${minutos} hrs. -----`;
 }
 
 function esHoy(fecha) {
@@ -38,39 +38,85 @@ function mostrarFechaFormateada() {
 	const fechaElement = document.getElementById("wedding-date");
 	const horaElement = document.getElementById("wedding-hour");
 	if (fechaElement && horaElement) {
-		fechaElement.innerHTML = `<strong>${formatearFecha(fechaBoda)}</strong>`;
+		fechaElement.innerHTML = `<strong>${formatearFecha(
+			fechaBoda
+		)}</strong>`;
 		horaElement.innerHTML = `<strong>${formatearHora(fechaBoda)}</strong>`;
-	}	
+	}
 }
 
 // ⏳ Solo cuenta regresiva
+// function updateCountdown() {
+// 	const countdownElement = document.getElementById("countdown");
+// 	const faltan = document.getElementById("faltan");
+
+// 	const ahora = new Date();
+// 	const fechaBoda = obtenerFechaBoda();
+// 	const diff = fechaBoda.getTime() - ahora.getTime();
+
+// 	if (esHoy(fechaBoda)) {
+// 		faltan.textContent = "";
+// 		countdownElement.innerHTML = `
+// 			<div class='timer-box'>
+// 				<span>🎉</span>
+// 				<span class='timer-label'>¡Es hoy!</span>
+// 			</div>
+// 		`;
+// 		return;
+// 	}
+
+// 	if (diff <= 0) {
+// 		faltan.textContent = "";
+// 		countdownElement.innerHTML = `
+// 			<div class='timer-box'>
+// 				<span>💍</span>
+// 				<span class='timer-label'>¡Ya ocurrió!</span>
+// 			</div>
+// 		`;
+// 		return;
+// 	}
+
+// 	const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+// 	const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+// 	const minutes = Math.floor((diff / (1000 * 60)) % 60);
+// 	const seconds = Math.floor((diff / 1000) % 60);
+
+// 	countdownElement.innerHTML = `
+// 		<div class="timer-box"><span>${days}</span><span class="timer-label">Días</span></div>
+// 		<div class="timer-box"><span>${hours}</span><span class="timer-label">Horas</span></div>
+// 		<div class="timer-box"><span>${minutes}</span><span class="timer-label">Minutos</span></div>
+// 		<div class="timer-box"><span>${seconds}</span><span class="timer-label">Segundos</span></div>
+// 	`;
+
+// 	setTimeout(updateCountdown, 1000);
+// }
+
 function updateCountdown() {
-	const countdownElement = document.getElementById("countdown");
 	const faltan = document.getElementById("faltan");
 
 	const ahora = new Date();
-	const fechaBoda = obtenerFechaBoda();
+	const fechaBoda = obtenerFechaBoda(); // Asegúrate de tener esta función definida
 	const diff = fechaBoda.getTime() - ahora.getTime();
 
 	if (esHoy(fechaBoda)) {
 		faltan.textContent = "";
-		countdownElement.innerHTML = `
-			<div class='timer-box'>
-				<span>🎉</span>
-				<span class='timer-label'>¡Es hoy!</span>
-			</div>
-		`;
+		document.getElementById("countdown").innerHTML = `
+            <section>
+                <span>🎉</span>
+                <p class='section-title'>¡Es hoy, prepárate!</p>
+            </section>
+        `;
 		return;
 	}
 
 	if (diff <= 0) {
 		faltan.textContent = "";
-		countdownElement.innerHTML = `
-			<div class='timer-box'>
-				<span>💍</span>
-				<span class='timer-label'>¡Ya ocurrió!</span>
-			</div>
-		`;
+		document.getElementById("countdown").innerHTML = `
+            <section>
+                <span>💍</span>
+                <p class='section-title'>¡La boda ya pasó y estuvo espectacular!</p>
+            </section>
+        `;
 		return;
 	}
 
@@ -79,12 +125,20 @@ function updateCountdown() {
 	const minutes = Math.floor((diff / (1000 * 60)) % 60);
 	const seconds = Math.floor((diff / 1000) % 60);
 
-	countdownElement.innerHTML = `
-		<div class="timer-box"><span>${days}</span><span class="timer-label">Días</span></div>
-		<div class="timer-box"><span>${hours}</span><span class="timer-label">Horas</span></div>
-		<div class="timer-box"><span>${minutes}</span><span class="timer-label">Minutos</span></div>
-		<div class="timer-box"><span>${seconds}</span><span class="timer-label">Segundos</span></div>
-	`;
+	// Actualizamos solo los números sin modificar el HTML completo
+	document.getElementById("days").textContent = days;
+	document.getElementById("hours").textContent = String(hours).padStart(
+		2,
+		"0"
+	);
+	document.getElementById("minutes").textContent = String(minutes).padStart(
+		2,
+		"0"
+	);
+	document.getElementById("seconds").textContent = String(seconds).padStart(
+		2,
+		"0"
+	);
 
 	setTimeout(updateCountdown, 1000);
 }
@@ -103,7 +157,7 @@ function initMusicPlayer() {
 		audio.muted = false;
 		audio.play().catch((e) => console.warn("No se pudo reproducir:", e));
 		modal.style.display = "none";
-		toggleBtn.style.display = "block";		
+		toggleBtn.style.display = "block";
 	});
 
 	toggleBtn.addEventListener("click", () => {
@@ -115,7 +169,6 @@ function initMusicPlayer() {
 			icon.classList.replace("fa-pause", "fa-play");
 		}
 	});
-	
 }
 
 // 🖼️ Swiper
@@ -139,14 +192,10 @@ function initSwiper() {
 	});
 }
 
-
-    
-
-
 // 🚀 Inicialización
 window.addEventListener("DOMContentLoaded", () => {
 	mostrarFechaFormateada(); // ✅ Solo una vez
-	updateCountdown();        // 🔁 Cada segundo
+	updateCountdown(); // 🔁 Cada segundo
 	initMusicPlayer();
 	initSwiper();
 });

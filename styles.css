@@ -285,7 +285,7 @@ body {
 .section-countdown {
 	text-align: center;
 	padding: 2rem 1rem;
-	font-family: "Playfair Display", serif;
+	/* font-family: 'Times New Roman', Times, serif; */
 	max-width: 800px;
 	margin: 0 auto;
 }
@@ -296,36 +296,50 @@ body {
 	font-weight: bold;
 }
 
-.countdown {
-	font-size: 1.5rem;
+.countdown-container {
+	border-radius: 10px;
+	padding: 20px;
+	/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.countdown-card {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
+}
+
+.countdown {
+	display: flex;
 	gap: 15px;
-	flex-wrap: wrap;
 }
 
 .timer-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	border: 2px solid #e0c7b3;
 	border-radius: 10px;
-	padding: 10px 15px;
+	padding: 10px;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 	min-width: 90px;
 	transition: transform 0.3s ease;
-	text-align: center;
-	flex: 1 1 calc(25% - 15px);
-	max-width: 120px;
+}
+
+.timer-number {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 5px;
 }
 
 .timer-label {
-	display: block;
 	font-size: 0.8em;
-	margin-top: 5px;
 }
 
 @media (max-width: 768px) {
 	.countdown {
-		justify-content: space-between;
+		flex-direction: column;
+		gap: 10px;
 	}
 
 	.timer-box {
@@ -334,7 +348,6 @@ body {
 		font-size: 0.9rem;
 	}
 }
-
 /* ================================
    9. Dresscode (usa .section, no estilos específicos extra)
    ================================ */
@@ -348,53 +361,41 @@ body {
    ================================ */
 .whatsapp-buttons {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	flex-wrap: wrap;
 	gap: 1rem;
-	margin: 1em 0;
+	justify-content: center;
+	margin-top: 1rem;
 }
 
 .contact-button {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	background-color: #25d366;
-	padding: 0.8em 1.5em;
-	border-radius: 30px;
-	gap: 10px;
-	width: 80%;
-	max-width: 350px;
+	padding: 12px 20px;
+	background-color: var(--azulOscuro);
+	color: var(--dorado);
 	text-decoration: none;
-	font-weight: bold;
-	transition: background-color 0.3s ease;
-}
-
-.contact-button img {
-	width: 20px;
-	height: 20px;
-	object-fit: contain;
-	flex-shrink: 0;
-}
-
-.contact-button a {
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 1rem;
-	display: block;
-	text-align: center;
-	color: var(--azulOscuro);
+	border-radius: 10px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .contact-button:hover {
-	background-color: #1ebe5d;
+	background-color: var(--dorado);
+	color: var(--azulOscuro);
+	transform: translateY(-3px);
 }
 
-@media (min-width: 768px) {
-	.whatsapp-buttons {
-		flex-direction: row;
-	}
+.contact-button img {
+	width: 24px;
+	height: 24px;
+	margin-right: 10px;
+	filter: brightness(100%);
+	transition: filter 0.3s ease;
 }
 
+.contact-button:hover img {
+	filter: brightness(120%);
+}
 /* ================================
    12. Reproductor de música y modal de bienvenida
    ================================ */
