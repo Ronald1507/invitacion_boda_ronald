@@ -10,6 +10,9 @@
 	--doradoSuave: #ffd700; /* Dorado suave */
 	--azulOscuro: #153157; /* Azul más oscuro */
 	--dorado: #bd9c5e; /* Dorado general */
+	--fuenteTitulo: "Great Vibes", cursive;
+	--fuenteTextos: "Dancing Script", cursive;
+	--fuenteBotonesEspeciales: "Cormorant Garamond", serif;
 }
 
 /* ================================
@@ -27,30 +30,35 @@ html {
 }
 
 body {
-	font-family: "Dancing Script", cursive;
+	font-family: var(--fuenteTextos);
 	background-image: url("./assets/img/fondo_pantalla.png");
 	color: var(--dorado);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	font-weight: bolder;
+	font-weight: normal;
 }
 
 /* ================================
    1. Estilo para todos los textos
    ================================ */
+.titulo {
+	font-family: var(--fuenteTitulo);
+	font-size: clamp(2.6rem, 4vw, 4rem);
+	color: var(--dorado);
+	text-align: center;
+	margin-bottom: 1rem;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
+}
 .texto-general {
-	font-size: 20px;
+	font-size: clamp(1.4rem, 4vw, 2rem);
 	line-height: 1.6;
 	color: var(--dorado);
 	margin-bottom: 1rem;
-	text-align: center;
-}
-
-@media (min-width: 768px) {
-	.texto-general {
-		font-size: 30px;
-	}
+	text-align: justify;
+	text-align-last: center;
+	max-width: 800px;
+	margin: 0 auto;
 }
 
 /* ================================
@@ -98,7 +106,7 @@ body {
 }
 
 .hero-header .title {
-	font-family: "Dancing Script", cursive;
+	font-family: var(--fuenteTitulo);
 	font-size: clamp(2rem, 5vw, 3rem);
 	color: var(--blancoCrema);
 	margin-bottom: 2.5rem;
@@ -109,12 +117,12 @@ body {
 	color: var(--blancoCrema);
 	letter-spacing: 1px;
 	margin-bottom: 4rem;
-	font-family: "Great Vibes", cursive;
+	font-family: var(--fuenteTextos);
 }
 
 .names {
-	font-family: "Great Vibes", cursive;
-	font-size: clamp(2.5rem, 6vw, 4rem);
+	font-family: var(--fuenteTitulo);
+	font-size: clamp(3rem, 6vw, 8rem);
 	line-height: 1.2;
 	margin-bottom: 4rem;
 	color: var(--doradoSuave);
@@ -122,26 +130,13 @@ body {
 }
 
 .invitation {
-	font-family: "Open Sans", sans-serif;
-	font-size: 1.1rem;
+	font-family: var(--fuenteTextos);
+	font-size: clamp(1rem, 6vw, 2rem);
 	line-height: 1.6;
 	color: var(--blancoCrema);
 	opacity: 0.9;
 	max-width: 600px;
 	margin: 0 auto 2rem;
-}
-
-/* Responsive para portada */
-@media (max-width: 768px) {
-	.names {
-		font-size: 2.5rem;
-	}
-	.title {
-		font-size: 1.8rem;
-	}
-	.invitation {
-		font-size: 1rem;
-	}
 }
 
 /* ================================
@@ -196,17 +191,8 @@ body {
 .section {
 	padding: 2rem 1rem;
 	text-align: center;
-	max-width: 800px;
+	/* max-width: 900px; */
 	margin: 0 auto;
-}
-
-.section-title {
-	font-family: "Dancing Script", cursive;
-	font-size: clamp(1.8rem, 4vw, 3rem);
-	color: var(--dorado);
-	text-align: center;
-	margin-bottom: 1rem;
-	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 /* ================================
@@ -227,7 +213,21 @@ body {
 	height: 100%;
 	object-fit: cover;
 	border-radius: 15px;
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+/* === Estilo para pantallas grandes (PC) === */
+@media screen and (min-width: 768px) {
+	.swiper {
+		max-width: 1200px;
+		border-radius: 10px;
+		overflow: hidden; /* IMPORTANTE: evita que las imágenes sobresalgan */
+	}
+
+	.swiper-slide img {
+		height: 80vh;
+		object-fit: contain;
+		border-radius: 20px;
+		padding: 0;
+	}
 }
 
 /* ================================
@@ -247,14 +247,14 @@ body {
 	gap: 10px;
 	background-color: var(--azulOscuro);
 	color: var(--dorado);
-	border: none;
 	padding: 12px 20px;
 	border-radius: 30px;
-	font-size: 1rem;
+	font-size: clamp(1.4rem, 4vw, 2rem);
 	cursor: pointer;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 	transition: background-color 0.3s ease, transform 0.2s ease;
-	font-family: "Open Sans", sans-serif;
+	font-family: var(--fuenteBotonesEspeciales);
+	font-weight: bolder;
 }
 
 .btn-ver-ubicacion:hover {
@@ -285,15 +285,8 @@ body {
 .section-countdown {
 	text-align: center;
 	padding: 2rem 1rem;
-	/* font-family: 'Times New Roman', Times, serif; */
 	max-width: 800px;
 	margin: 0 auto;
-}
-
-#faltan {
-	font-size: 2rem;
-	margin-bottom: 20px;
-	font-weight: bold;
 }
 
 .countdown-container {
@@ -437,11 +430,11 @@ body {
 	height: 100%;
 	padding: 2em 1em;
 	text-align: center;
-	font-family: "Open Sans", sans-serif;
+	font-family: var(--fuenteBotonesEspeciales);
 }
 
 .letter h2 {
-	font-family: "Great Vibes", cursive;
+	font-family: var(--fuenteTextos);
 	font-size: 1.8rem;
 	color: var(--azulOscuro);
 	margin-bottom: 1.5em;
@@ -460,7 +453,7 @@ body {
 	padding: 12px 24px;
 	border-radius: 30px;
 	font-size: 1rem;
-	font-family: "Open Sans", sans-serif;
+	font-family: var(--fuenteBotonesEspeciales);
 	cursor: pointer;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 	transition: background-color 0.3s ease;
@@ -515,44 +508,11 @@ header {
 		background-repeat: no-repeat;
 	}
 
-	body {
-		background-image: url("./assets/img/fondo_celeste_claro_dos.png");
-	}
+	/* body {
+		background-image: url("./assets/img/fondo_flores_celester.png");
+	} */
 }
 
-/* Responsive general */
-@media (max-width: 768px) {
-	header h1 {
-		font-size: 2.5rem;
-	}
-	.slide {
-		width: 90%;
-	}
-	.timer-box {
-		font-size: 0.9rem;
-	}
-	.whatsapp-buttons a {
-		font-size: 0.9rem;
-		padding: 0.7em 1em;
-	}
-	.swiper {
-		width: 95%;
-	}
-}
-
-@media (max-width: 480px) {
-	header h1 {
-		font-size: 2rem;
-	}
-	.slide {
-		width: 95%;
-		margin: 0 0.5rem;
-	}
-	.timer-box {
-		min-width: 70px;
-		font-size: 0.8rem;
-	}
-	.section-countdown #faltan {
-		font-size: 1.5rem;
-	}
+.data-banco {
+	text-align: left;
 }
