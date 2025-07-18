@@ -31,7 +31,7 @@ html {
 
 body {
 	font-family: var(--fuenteTextos);
-	background-image: url("./assets/img/fondo_pantalla.png");
+	background-image: url("../assets/img/fondo_pantalla.png");
 	color: var(--dorado);
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -64,7 +64,7 @@ body {
    1. Portada - Hero Header
    ================================ */
 .hero-header {
-	background-image: url("./assets/img/fondo2.jpeg"); /* Fondo de portada */
+	background-image: url("../assets/img/fondo2.jpeg"); /* Fondo de portada */
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -188,7 +188,7 @@ body {
    4. Nuestra historia - Sección general
    ================================ */
 .section {
-	padding: 2rem 1rem;
+	padding: 1.5rem;
 	text-align: center;
 	/* max-width: 900px; */
 	margin: 0 auto;
@@ -283,7 +283,7 @@ body {
    ================================ */
 .section-countdown {
 	text-align: center;
-	padding: 4rem 1rem; /* Más espacio arriba y abajo */
+	padding: 2rem 1rem; /* Más espacio arriba y abajo */
 	max-width: 1000px; /* Permite más ancho */
 	margin: 0 auto;
 }
@@ -308,7 +308,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	border: 3px solid #e0c7b3;
+	border: 3px solid var(--dorado);
 	border-radius: 15px;
 	padding: 20px;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -495,7 +495,7 @@ body {
    13. Otros estilos generales y media queries
    ================================ */
 header {
-	background-image: url("./assets/img/fondo2.jpeg");
+	background-image: url("../assets/img/fondo2.jpeg");
 	background-size: cover;
 	background-position: center;
 	text-align: center;
@@ -514,7 +514,7 @@ header {
 	}
 
 	/* body {
-		background-image: url("./assets/img/fondo_flores_celester.png");
+		background-image: url("../assets/img/fondo_flores_celester.png");
 	} */
 }
 
