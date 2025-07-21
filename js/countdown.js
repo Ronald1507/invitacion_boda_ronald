@@ -4,6 +4,8 @@ import {
 	formatearFecha,
 	formatearHora,
 	esHoy,
+	fechaMaximaConfirmacion,
+	formatearFechaMaximaConfirmacion,
 } from "./fechaUtils.js";
 
 export function mostrarFechaFormateada() {
@@ -16,6 +18,16 @@ export function mostrarFechaFormateada() {
 			fechaBoda
 		)}</strong>`;
 		horaElement.innerHTML = `<strong>${formatearHora(fechaBoda)}</strong>`;
+	}
+}
+
+export function mostrarFechaMaximaConfirmacion() {
+	const fecha = fechaMaximaConfirmacion();
+	const diaMaximoElement = document.getElementById("diaMaximoConfirmacion");
+
+	if (diaMaximoElement) {
+		const fechaFormateada = formatearFechaMaximaConfirmacion(fecha);
+		diaMaximoElement.textContent = fechaFormateada;
 	}
 }
 
