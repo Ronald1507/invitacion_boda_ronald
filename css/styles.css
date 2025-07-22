@@ -13,8 +13,9 @@
 	--fuenteTitulo: "Great Vibes", cursive;
 	--fuenteTextos: "Dancing Script", cursive;
 	--fuenteBotonesEspeciales: "Cormorant Garamond", serif;
-	--fondoPantalla: url("../assets/img/fondo_pantalla.png");
-	--fondoPortada: url("../assets/img/fondo2.jpeg"); /* Fondo de portada */
+	--fondoPantallaMobile: url("../assets/img/fondo_celeste_mobile_vacio.png");
+	--fondoPantalla: url("../assets/img/fondo_pantalla_final.png");
+	--fondoPortada: url("../assets/img/foto_manos.jpeg"); /* Fondo de portada */
 }
 
 /* ================================
@@ -39,6 +40,11 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	font-weight: normal;
+}
+@media (max-width: 767px) {
+	body {
+		background-image: var(--fondoPantallaMobile);
+	}
 }
 
 /* ================================
@@ -137,7 +143,7 @@ body {
 	font-size: clamp(3rem, 6vw, 8rem);
 	line-height: 1.2;
 	margin-bottom: 4rem;
-	color: var(--doradoSuave);
+	color: var(--blancoCrema);
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
@@ -358,6 +364,71 @@ body {
 		padding: 16px;
 	}
 }
+/*=============================================
+Foto manos y cita biblica
+===============================================*/
+/* Estilos generales */
+.historia-contenido {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* Imagen */
+.foto-historia {
+	width: 400px;
+	max-width: 100%;
+	overflow: hidden;
+	border-top-left-radius: 150px;
+	border-top-right-radius: 150px;
+	box-shadow: 0px 10px 30px rgba(0, 0, 0, 1);
+	flex-shrink: 0;
+}
+
+.foto-historia img {
+	width: 100%;
+	height: auto;
+	display: block;
+	object-fit: cover;
+}
+
+/* Texto + cita */
+.cita-biblica {
+	max-width: 600px;
+	text-align: justify;
+	font-size: clamp(1.4rem, 5vw, 2rem);
+	font-family: var(--fuenteBotonesEspeciales);
+}
+
+/* Referencia bíblica */
+.referencia-biblica {
+	display: block;
+	margin-top: 1rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Escritorio */
+@media (min-width: 768px) {
+	.historia-contenido {
+		flex-direction: row;
+		align-items: center;
+		text-align: left;
+	}
+
+	.cita-biblica {
+		text-align: justify;
+	}
+
+	.referencia-biblica {
+		text-align: center;
+	}
+}
+
 /* ================================
    9. Dresscode (usa .section, no estilos específicos extra)
    ================================ */
@@ -629,7 +700,7 @@ body {
 /* Botón Abrir Invitación */
 #start-music-btn {
 	background-color: var(--dorado);
-	color: var(--azulOscuro);
+	color: var(--blancoCrema);
 	border: none;
 	padding: 12px 24px;
 	border-radius: 30px;
@@ -643,8 +714,7 @@ body {
 
 #start-music-btn:hover {
 	background-color: var(--dorado);
-	color: var(--azulOscuro);
-	transform: scale(1.05);
+	transform: scale(1.1);
 }
 
 /* Botón para controlar música (pausar/reproducir) */
