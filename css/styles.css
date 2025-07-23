@@ -364,6 +364,28 @@ body {
 		padding: 16px;
 	}
 }
+
+.header-countdown {
+	display: flex;
+	justify-content: center; /* centra todo el grupo horizontalmente */
+	align-items: center; /* alinea verticalmente icono y texto */
+	gap: 0; /* sin espacio entre icono y texto */
+	margin-bottom: 1rem; /* para separar del resto */
+}
+
+.header-countdown .titulo {
+	margin: 0;
+	padding: 0;
+	line-height: 60px;
+	white-space: nowrap;
+}
+
+.icono#icono-reloj {
+	width: 60px;
+	height: 60px;
+	margin: 0; /* elimina márgenes */
+}
+
 /*=============================================
 Foto manos y cita biblica
 ===============================================*/
