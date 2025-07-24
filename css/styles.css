@@ -214,6 +214,42 @@ body {
 }
 
 /* ================================
+   NUESTRA HISTORIA - Layout Responsive
+   ================================ */
+.historia-layout {
+	display: flex;
+	flex-direction: column; /* Por defecto en móvil */
+	gap: 2rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.historia-texto {
+	max-width: 600px;
+}
+
+/* Para pantallas grandes */
+@media (min-width: 768px) {
+	.historia-layout {
+		flex-direction: row; /* Cambia a horizontal */
+		align-items: center;
+		justify-content: center;
+		gap: 4rem; /* Espacio entre swiper y texto */
+	}
+
+	.carousel-section {
+		flex: 1;
+		max-width: 600px;
+	}
+
+	.historia-texto {
+		flex: 1;
+		text-align: left;
+		max-width: 600px;
+	}
+}
+
+/* ================================
    5. Carrusel Swiper
    ================================ */
 .carousel-section {
@@ -474,7 +510,21 @@ Foto manos y cita biblica
 .dresscode-img {
 	max-width: 200px;
 	height: auto;
+	margin: 0 auto;
+	/* animation: balancear 3s ease-in-out infinite; */
 }
+/* @keyframes balancear {
+	0%,
+	100% {
+		transform: rotate(0deg) translateX(0);
+	}
+	25% {
+		transform: rotate(-3deg) translateX(-5px);
+	}
+	75% {
+		transform: rotate(3deg) translateX(5px);
+	}
+} */
 
 .texto-dress-code {
 	font-size: clamp(1.4rem, 5vw, 2rem);
@@ -557,6 +607,7 @@ Foto manos y cita biblica
 	gap: 2rem;
 	padding: 2rem;
 	text-align: left;
+	position: relative; /* no indispensable pero por si acaso */
 }
 
 /* Bloques individuales */
@@ -567,13 +618,37 @@ Foto manos y cita biblica
 	padding: 1rem;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 	overflow: hidden;
+	position: relative; /* necesario para posicionar el botón */
 }
 
 /* Párrafos */
 .bloque-banco p {
-	font-size: clamp(1.2rem, 4vw, 1.6rem);
+	font-size: clamp(1rem, 4vw, 1.6rem);
 	font-family: var(--fuenteBotonesEspeciales);
-	margin: 0.5rem 0;
+	margin: 0.1rem 0;
+}
+
+/* Botón copiar con icono arriba a la derecha */
+.copy-btn {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 4px;
+	color: var(--dorado);
+	transition: color 0.3s ease;
+}
+
+.copy-btn:hover {
+	color: var(--azulOscuro);
+}
+
+.copy-btn svg {
+	display: block;
+	width: 20px;
+	height: 20px;
 }
 
 /* Responsive: en escritorio se acomodan a izquierda */
