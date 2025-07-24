@@ -7,6 +7,8 @@ import {
 import { cargarIconos } from "./iconos.js";
 import { initMusicPlayer } from "./musicPlayer.js";
 import { initSwiper } from "./swiperSetup.js";
+import { animarDresscode, animarIconoRegalo } from "./animations.js";
+import { enableCopyButtons } from "./helpers.js";
 
 window.addEventListener("DOMContentLoaded", () => {
 	mostrarFechaFormateada();
@@ -15,4 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	initSwiper();
 	mostrarFechaMaximaConfirmacion();
 	cargarIconos();
+	animarDresscode();
+	animarIconoRegalo();
+	enableCopyButtons();
 });
