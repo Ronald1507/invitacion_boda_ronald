@@ -11,7 +11,7 @@
 	--azulOscuro: #153157; /* Azul más oscuro */
 	--dorado: #bd9c5e; /* Dorado general */
 	--fuenteTitulo: "Great Vibes", cursive;
-	--fuenteTextos: "Dancing Script", cursive;
+	--fuenteTextos: "Arapey", serif;
 	--fuenteBotonesEspeciales: "Cormorant Garamond", serif;
 	--fondoPantallaMobile: url("../assets/img/fondo_celeste_mobile_vacio.png");
 	--fondoPantalla: url("../assets/img/fondo_pantalla_final.png");
@@ -58,7 +58,8 @@ body {
 	margin-bottom: 1rem;
 }
 .texto-general {
-	font-size: clamp(1.4rem, 4vw, 2rem);
+	/* font-size: clamp(1.4rem, 4vw, 2rem); */
+	font-size: clamp(1.2rem, 2.5vw, 2rem);
 	line-height: 1.6;
 	color: var(--dorado);
 	margin-bottom: 1rem;
@@ -149,11 +150,10 @@ body {
 
 .invitation {
 	font-family: var(--fuenteTextos);
-	font-size: clamp(1rem, 6vw, 2rem);
+	font-size: clamp(1rem, 3vw, 2rem);
 	line-height: 1.6;
 	color: var(--blancoCrema);
 	opacity: 0.9;
-	max-width: 600px;
 	margin: 0 auto 2rem;
 }
 
@@ -260,6 +260,8 @@ body {
 	width: 90%;
 	max-width: 800px;
 	margin: 2rem auto;
+	border-radius: 10px;
+	overflow: hidden; /* Evita que la imagen sobresalga */
 }
 
 .swiper-slide img {
@@ -270,17 +272,73 @@ body {
 }
 /* === Estilo para pantallas grandes (PC) === */
 @media screen and (min-width: 768px) {
-	.swiper {
-		max-width: 1200px;
-		border-radius: 10px;
-		overflow: hidden; /* IMPORTANTE: evita que las imágenes sobresalgan */
+	.carousel-section .swiper {
+		max-width: 600px; /* Ajusta el ancho */
+		border-radius: 20px; /* Bordes más redondeados */
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75); /* Sombra elegante */
+		/* background-color: rgba(255, 255, 255, 0.1); */
+		padding: 10px; /* Espacio interior */
+		overflow: hidden; /* Para que la sombra sea limpia */
 	}
 
 	.swiper-slide img {
-		height: 80vh;
-		object-fit: contain;
-		border-radius: 20px;
-		padding: 0;
+		border-radius: 15px; /* Bordes internos suaves */
+		object-fit: cover; /* Ajusta imagen sin deformar */
+		overflow: hidden; /* Evita que la imagen sobresalga */
+	}
+}
+
+/*===========================================
+Seccion padres y padrinos
+=============================================*/
+/* Contenedor general */
+.bendicion {
+	text-align: center;
+	margin: 2rem auto;
+	max-width: 1200px;
+	padding: 1rem;
+}
+
+/* Grid para bloques */
+.bendicion-grid {
+	display: grid;
+	grid-template-columns: 1fr; /* Por defecto, una columna */
+	gap: 2rem;
+	margin: 2rem auto;
+}
+
+/* Bloques individuales */
+.bloque-bendicion {
+	border-radius: 12px;
+	padding: 1rem;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease;
+}
+
+.bloque-bendicion:hover {
+	transform: scale(1.03);
+}
+
+/* Titulos de bloques */
+.bloque-bendicion h4 {
+	font-family: var(--fuenteTextos);
+	color: var(--dorado);
+	margin-bottom: 1rem;
+}
+
+/* Textos internos */
+.bloque-bendicion p {
+	color: var(--dorado);
+	margin: 0.3rem 0;
+}
+
+/* === Vista de escritorio === */
+@media (min-width: 768px) {
+	.bendicion-grid {
+		grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+	}
+	.bloque-bendicion {
+		border: 2px solid var(--dorado);
 	}
 }
 
@@ -511,39 +569,21 @@ Foto manos y cita biblica
 	max-width: 200px;
 	height: auto;
 	margin: 0 auto;
-	/* animation: balancear 3s ease-in-out infinite; */
-}
-/* @keyframes balancear {
-	0%,
-	100% {
-		transform: rotate(0deg) translateX(0);
-	}
-	25% {
-		transform: rotate(-3deg) translateX(-5px);
-	}
-	75% {
-		transform: rotate(3deg) translateX(5px);
-	}
-} */
-
-.texto-dress-code {
-	font-size: clamp(1.4rem, 5vw, 2rem);
-	text-align: justify;
 }
 
 @media (min-width: 768px) {
 	.dresscode-contenido {
-		justify-content: center;
-		max-width: 900px;
+		justify-content: space-between;
+		max-width: 70%;
 		margin: 0 auto;
 	}
 
 	.dresscode-img {
-		max-width: 280px;
+		max-width: 400px;
 	}
 
 	.texto-dress-code {
-		max-width: 500px;
+		max-width: 800px;
 	}
 }
 
@@ -626,6 +666,11 @@ Foto manos y cita biblica
 	font-size: clamp(1rem, 4vw, 1.6rem);
 	font-family: var(--fuenteBotonesEspeciales);
 	margin: 0.1rem 0;
+}
+
+.bloque-banco:hover {
+	transform: scale(1.05);
+	cursor: pointer;
 }
 
 /* Botón copiar con icono arriba a la derecha */
@@ -723,6 +768,7 @@ Foto manos y cita biblica
 
 .contact-button:hover img {
 	filter: brightness(120%);
+	content: url("../assets/img/whatsapp_azul.png");
 }
 @media (max-width: 767px) {
 	.contact-button {
@@ -783,7 +829,7 @@ Foto manos y cita biblica
 }
 
 .letter h2 {
-	font-family: var(--fuenteTextos);
+	font-family: var(--fuenteTitulo);
 	font-size: clamp(2.6rem, 4vw, 2rem);
 	color: var(--dorado);
 	margin: 1.5em 0;

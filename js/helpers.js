@@ -1,10 +1,12 @@
 export function enableCopyButtons() {
-	const buttons = document.querySelectorAll(".copy-btn");
+	const buttons = document.querySelectorAll(".bloque-banco");
 
 	buttons.forEach((button) => {
+		const copyBtn = button.querySelector(".copy-btn");
+		const originalIcon = copyBtn.innerHTML; // Guardamos el SVG original
+
 		button.addEventListener("click", () => {
-			const bloque = button.parentElement;
-			const parrafos = bloque.querySelectorAll("p");
+			const parrafos = button.querySelectorAll("p");
 			const texto = Array.from(parrafos)
 				.map((p) => p.innerText.trim())
 				.join("\n");
@@ -12,17 +14,21 @@ export function enableCopyButtons() {
 			navigator.clipboard
 				.writeText(texto)
 				.then(() => {
-					// Guardamos el contenido original (el ícono SVG)
-					const originalContent = button.innerHTML;
+					// Restaurar todos los botones antes de actualizar el clickeado
+					buttons.forEach((btn) => {
+						const btnIcon = btn.querySelector(".copy-btn");
+						btnIcon.innerHTML = originalIcon; // Restaurar el SVG
+						btnIcon.style.color = "#bd9c5e"; // Color original
+					});
 
-					// Cambiamos a texto '¡Copiado!'
-					button.textContent = "¡Copiado!";
-					button.style.color = "#153157";
+					// Cambiamos el botón actual a "¡Copiado!"
+					copyBtn.textContent = "¡Copiado!";
+					// copyBtn.style.color = "#153157";
 
-					// Después de 2 segundos, restauramos el ícono
+					// Después de 3 segundos, restauramos el SVG original
 					setTimeout(() => {
-						button.innerHTML = originalContent;
-						button.style.color = "#bd9c5e";
+						copyBtn.innerHTML = originalIcon;
+						copyBtn.style.color = "#bd9c5e";
 					}, 3000);
 				})
 				.catch((err) => {
