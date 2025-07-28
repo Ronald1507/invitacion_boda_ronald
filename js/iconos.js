@@ -1,9 +1,9 @@
 // iconos.js
 export function cargarIconos() {
 	const iconos = [
-		{ id: "icono-calendar", path: "/assets/animations/calendario.json" },
-		{ id: "icono-regalo", path: "/assets/animations/regalo_dos.json" },
-		{ id: "icono-gps", path: "/assets/animations/icono-gps.json" },
+		{ id: "icono-calendar", path: "../assets/animations/calendario.json" },
+		{ id: "icono-regalo", path: "../assets/animations/regalo_dos.json" },
+		{ id: "icono-gps", path: "../assets/animations/icono-gps.json" },
 
 		// agrega más iconos aquí si quieres
 	];
