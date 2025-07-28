@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Darlyn & Ronald</title>
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/icons-styles.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,8 +106,8 @@
             </div>
             <div class="bloque-bendicion">
                 <h4 class="texto-general">Padrinos Novia</h4>
-                <p class="texto-general">NOMBRE PADRINO</p>
-                <p class="texto-general">NOMBE MADRINA</p>
+                <p class="texto-general">Pedro Ortega</p>
+                <p class="texto-general">Gemmita Peñailillo Jara</p>
             </div>
         </div>
 
@@ -119,7 +118,7 @@
 
     <!-- 4. Ubicación -->
     <section class="section">
-
+        <div class="icono-gps" id="icono-gps"></div>
         <h2 class="titulo">
             Lugar
         </h2>
@@ -140,8 +139,9 @@
 
     <!-- 5. Cuenta regresiva -->
     <section class="section-countdown">
+        <div class="calendar-icon" id="icono-calendar"></div>
         <div class="header-countdown">
-            <!-- <div class="icono" id="icono-reloj"></div> -->
+
             <h2 id="faltan" class="titulo">Cuenta regresiva</h2>
         </div>
         <div class="countdown-container">
@@ -208,9 +208,8 @@
     <section class="section regalos-section">
         <h2 class="titulo">Regalos</h2>
 
-        <!-- <div class="icono" id="icono-regalo"></div> -->
         <div class="regalos-contenido">
-            <img class="regalo-img" src="./assets/img/regalo.svg" alt="Regalo">
+            <div class="regalo-icon" id="icono-regalo"></div>
 
             <div class="texto-regalos">
                 <p class="texto-general">
@@ -294,7 +293,7 @@
     </section>
 
     <!-- 9. Reproductor de música -->
-    <audio autoplay loop id="bg-music" muted>
+    <audio autoplay id="bg-music" muted>
         <source src="assets/music/contigo_siempre.mp3" type="audio/mpeg" />
         Tu navegador no soporta el audio.
     </audio>

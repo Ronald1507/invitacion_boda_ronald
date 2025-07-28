@@ -180,6 +180,20 @@ body {
 /* ================================
    3. Fecha - Sección calendario
    ================================ */
+.calendar-icon {
+	max-width: 150px; /* Reducido para mobile */
+	height: auto;
+	margin: 0 auto 1.5rem auto; /* Centrado con margen inferior */
+	display: block;
+}
+
+@media (min-width: 768px) {
+	.calendar-icon {
+		max-width: 300px; /* Más grande para desktop */
+		margin: 0 auto 2rem auto; /* Mantenido centrado */
+	}
+}
+
 .section.calendar {
 	padding-top: 0;
 	font-size: 1.5em;
@@ -310,7 +324,7 @@ Seccion padres y padrinos
 /* Bloques individuales */
 .bloque-bendicion {
 	border-radius: 12px;
-	padding: 1rem;
+	padding: 0.5rem;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 	transition: transform 0.3s ease;
 }
@@ -323,7 +337,6 @@ Seccion padres y padrinos
 .bloque-bendicion h4 {
 	font-family: var(--fuenteTextos);
 	color: var(--dorado);
-	margin-bottom: 1rem;
 }
 
 /* Textos internos */
@@ -345,6 +358,21 @@ Seccion padres y padrinos
 /* ================================
    7. Ubicación del evento
    ================================ */
+
+.icono-gps {
+	max-width: 150px; /* Reducido para mobile */
+	height: auto;
+	margin: 0 auto 1.5rem auto; /* Centrado con margen inferior */
+	display: block;
+}
+
+@media (min-width: 768px) {
+	.icono-gps {
+		max-width: 300px; /* Más grande para desktop */
+		margin: 0 auto 2rem auto; /* Mantenido centrado */
+	}
+}
+
 .ubicacion-container {
 	text-align: center;
 	margin: 2rem auto;
@@ -474,12 +502,6 @@ Seccion padres y padrinos
 	white-space: nowrap;
 }
 
-.icono#icono-reloj {
-	width: 60px;
-	height: 60px;
-	margin: 0; /* elimina márgenes */
-}
-
 /*=============================================
 Foto manos y cita biblica
 ===============================================*/
@@ -606,27 +628,33 @@ Foto manos y cita biblica
 	text-align: left;
 }
 
-/* Imagen */
-.regalo-img {
-	max-width: 150px;
-	height: auto;
-}
-
 /* Contenedor de texto */
 .texto-regalos {
 	max-width: 800px;
 }
 
-/* Estilo para pantallas grandes */
+/* Icono de regalo - versión móvil */
+.regalo-icon {
+	width: 200px; /* Ajusta el tamaño deseado */
+	height: 200px;
+	margin: 0; /* centrado en móvil y espacio abajo */
+}
+
+/* Estilo para pantallas grandes (escritorio) */
 @media (min-width: 768px) {
 	.regalos-contenido {
 		justify-content: center;
 		max-width: 100%;
 		margin: 0 auto;
+		flex-wrap: nowrap; /* Evita que se apilen en pantallas grandes */
+		text-align: left;
 	}
 
-	.regalo-img {
-		max-width: 200px;
+	.regalo-icon {
+		width: 400px; /* Más grande en escritorio */
+		height: 400px;
+		margin: 0; /* Eliminamos margen inferior para alinear a la izquierda */
+		flex-shrink: 0; /* Evita que se achique */
 	}
 
 	.texto-regalos {
