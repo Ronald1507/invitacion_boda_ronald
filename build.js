@@ -51,29 +51,6 @@ console.log("✅ Archivos copiados a /dist");
 // ✅ Tamaño original
 const sizeBefore = getFolderSize(dist);
 
-// ✅ Minificar HTML, CSS y JS
-function minifyFiles(dir) {
-	for (const file of fs.readdirSync(dir)) {
-		const filePath = path.join(dir, file);
-		if (fs.statSync(filePath).isDirectory()) {
-			minifyFiles(filePath);
-		} else if (file.endsWith(".html")) {
-			execSync(
-				`npx html-minifier-terser --collapse-whitespace --remove-comments --minify-js true --minify-css true -o "${filePath}" "${filePath}"`
-			);
-		} else if (file.endsWith(".css")) {
-			execSync(`npx cleancss -o "${filePath}" "${filePath}"`);
-		} else if (file.endsWith(".js")) {
-			execSync(
-				`npx terser "${filePath}" -o "${filePath}" --compress --mangle`
-			);
-		}
-	}
-}
-
-minifyFiles(dist);
-console.log("✅ HTML, CSS y JS minificados");
-
 // ✅ Optimizar imágenes en /dist/assets/img
 const imgFolder = path.join(dist, "assets/img");
 
@@ -96,7 +73,7 @@ const imgFolder = path.join(dist, "assets/img");
 		});
 		console.log("✅ Imágenes convertidas a WebP");
 
-		// Reemplazar en HTML (solo dentro de /dist)
+		// Reemplazar en HTML y CSS
 		replaceToWebP(dist);
 
 		// Eliminar JPG/PNG originales
@@ -105,15 +82,16 @@ const imgFolder = path.join(dist, "assets/img");
 	}
 })();
 
-// ✅ Reemplazar rutas en HTML por WebP
+// ✅ Reemplazar rutas en HTML y CSS por WebP
 function replaceToWebP(dir) {
 	for (const file of fs.readdirSync(dir)) {
 		const filePath = path.join(dir, file);
 		if (fs.statSync(filePath).isDirectory()) {
 			replaceToWebP(filePath);
-		} else if (file.endsWith(".html")) {
+		} else if (file.endsWith(".html") || file.endsWith(".css")) {
 			let content = fs.readFileSync(filePath, "utf8");
-			content = content.replace(/\.(jpg|jpeg|png)/g, ".webp");
+			// Reemplazar .jpg/.jpeg/.png por .webp
+			content = content.replace(/\.(jpg|jpeg|png)(?=")/g, ".webp");
 			fs.writeFileSync(filePath, content);
 		}
 	}
@@ -147,13 +125,42 @@ function compressMP3(dir) {
 					fs.unlinkSync(filePath);
 					fs.renameSync(outputFile, filePath);
 					console.log(`✅ MP3 comprimido: ${file}`);
+				})
+				.on("error", (err) => {
+					console.error(
+						`❌ Error al comprimir ${file}:`,
+						err.message
+					);
 				});
 		}
 	}
 }
-compressMP3(dist);
+compressMP3(path.join(dist, "assets", "music"));
 
-// ✅ Reporte
+// ✅ Minificar HTML, CSS y JS
+function minifyFiles(dir) {
+	for (const file of fs.readdirSync(dir)) {
+		const filePath = path.join(dir, file);
+		if (fs.statSync(filePath).isDirectory()) {
+			minifyFiles(filePath);
+		} else if (file.endsWith(".html")) {
+			execSync(
+				`npx html-minifier-terser --collapse-whitespace --remove-comments --minify-js true --minify-css true -o "${filePath}" "${filePath}"`
+			);
+		} else if (file.endsWith(".css")) {
+			execSync(`npx cleancss -o "${filePath}" "${filePath}"`);
+		} else if (file.endsWith(".js")) {
+			execSync(
+				`npx terser "${filePath}" -o "${filePath}" --compress --mangle`
+			);
+		}
+	}
+}
+
+minifyFiles(dist);
+console.log("✅ HTML, CSS y JS minificados");
+
+// ✅ Reporte final
 setTimeout(() => {
 	const sizeAfter = getFolderSize(dist);
 	console.log("📊 Reporte:");
