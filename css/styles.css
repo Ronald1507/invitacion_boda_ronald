@@ -13,9 +13,9 @@
 	--fuenteTitulo: "Great Vibes", cursive;
 	--fuenteTextos: "Arapey", serif;
 	--fuenteBotonesEspeciales: "Cormorant Garamond", serif;
-	--fondoPantallaMobile: url("../assets/img/fondo_celeste_mobile_vacio.png");
-	--fondoPantalla: url("../assets/img/fondo_pantalla_final.png");
-	--fondoPortada: url("../assets/img/foto_manos.jpeg"); /* Fondo de portada */
+	--fondoPantallaMobile: url("../assets/img/fondo_celeste_mobile_vacio.webp");
+	--fondoPantalla: url("../assets/img/fondo_pantalla_final.webp");
+	--fondoPortada: url("../assets/img/foto_manos.webp"); /* Fondo de portada */
 }
 
 /* ================================
@@ -79,7 +79,7 @@ body {
 		background-repeat: no-repeat;
 	}
 	/* body {
-		background-image: url("../assets/img/fondo_flores_celester.png");
+		background-image: url("../assets/img/fondo_flores_celester.webp");
 	} */
 }
 .hero-header {
@@ -811,7 +811,7 @@ Foto manos y cita biblica
 
 .contact-button:hover img {
 	filter: brightness(120%);
-	content: url("../assets/img/whatsapp_azul.png");
+	content: url("../assets/img/whatsapp_azul.webp");
 }
 @media (max-width: 767px) {
 	.contact-button {
