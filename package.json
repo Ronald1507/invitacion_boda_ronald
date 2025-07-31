@@ -3,7 +3,10 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"build": "node build.js"
+		"optimizar": "node build.js",
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
 	},
 	"keywords": [],
 	"author": "",
@@ -18,7 +21,13 @@
 		"imagemin-mozjpeg": "^10.0.0",
 		"imagemin-pngquant": "^10.0.0",
 		"imagemin-webp": "^8.0.0",
-		"terser": "^5.43.1"
+		"terser": "^5.43.1",
+		"vite": "^7.0.6"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"gsap": "^3.13.0",
+		"lottie-web": "^5.13.0",
+		"swiper": "^11.2.10"
+	}
 }
