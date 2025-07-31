@@ -1,0 +1,10 @@
+# Carpetas
+node_modules/
+dist/
+.cache/
+
+# Archivos
+.env
+*.log
+.DS_Store
+Thumbs.db
