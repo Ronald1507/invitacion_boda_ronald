@@ -1,19 +1,18 @@
-// --- 3. Importar Lottie ---
 import lottie from "lottie-web";
 
+// ✅ Importa los JSON directamente
+import calendarioData from "../assets/animations/calendario.json" assert { type: "json" };
+import regaloData from "../assets/animations/regalo_dos.json" assert { type: "json" };
+import gpsData from "../assets/animations/icono-gps.json" assert { type: "json" };
+
+const iconos = [
+	{ id: "icono-calendar", data: calendarioData },
+	{ id: "icono-regalo", data: regaloData },
+	{ id: "icono-gps", data: gpsData },
+];
+
 export function cargarIconos() {
-	const iconos = [
-		{
-			id: "icono-calendar",
-			path: "/src/assets/animations/calendario.json",
-		},
-		{ id: "icono-regalo", path: "/src/assets/animations/regalo_dos.json" },
-		{ id: "icono-gps", path: "/src/assets/animations/icono-gps.json" },
-
-		// agrega más iconos aquí si quieres
-	];
-
-	iconos.forEach(({ id, path }) => {
+	iconos.forEach(({ id, data }) => {
 		const container = document.getElementById(id);
 		if (container) {
 			lottie.loadAnimation({
@@ -21,7 +20,7 @@ export function cargarIconos() {
 				renderer: "svg",
 				loop: true,
 				autoplay: true,
-				path,
+				animationData: data, // ✅ Usa animationData
 			});
 		}
 	});
