@@ -1,4 +1,9 @@
-// swiperSetup.js
+// --- 1. Importar Swiper ---
+import { Swiper } from "swiper";
+import "swiper/css"; // Estilos base de Swiper
+import "swiper/css/navigation"; // Estilos de navegación
+import "swiper/css/pagination"; // Estilos de paginación
+
 export function initSwiper() {
 	new Swiper(".mySwiper", {
 		loop: true,

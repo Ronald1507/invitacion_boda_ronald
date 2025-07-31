@@ -13,9 +13,10 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 
 const __dirname = path.resolve();
 
-// Carpetas
-const files = path.join(__dirname, "files");
-const assets = path.join(__dirname, "assets");
+// 📁 Carpetas dentro de src/
+const src = path.join(__dirname, "src");
+const files = path.join(src, "files");
+const assets = path.join(src, "assets");
 
 const filesImg = path.join(files, "img");
 const filesMusic = path.join(files, "music");
@@ -27,6 +28,21 @@ function ensureDir(dir) {
 	if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 }
 
+// ✅ Eliminar contenido de una carpeta, pero no la carpeta en sí
+function emptyDir(dir) {
+	if (fs.existsSync(dir)) {
+		for (const file of fs.readdirSync(dir)) {
+			const filePath = path.join(dir, file);
+			if (fs.statSync(filePath).isDirectory()) {
+				fs.rmSync(filePath, { recursive: true });
+			} else {
+				fs.unlinkSync(filePath);
+			}
+		}
+	}
+}
+
+// ✅ Asegurar que carpetas internas existan
 ensureDir(assetsImg);
 ensureDir(assetsMusic);
 
@@ -66,8 +82,7 @@ function copyNonWebpImages() {
 			);
 
 			if ([".jpg", ".jpeg", ".png"].includes(ext)) {
-				// Si es JPG/PNG, no se copia aquí (se convertirá a WebP después)
-				continue;
+				continue; // Se convertirá a WebP
 			}
 
 			if (webpExists) {
@@ -85,12 +100,11 @@ function copyNonWebpImages() {
 	}
 }
 
-// ✅ Optimizar imágenes: convertir JPG/PNG → WebP (y evitar duplicados)
+// ✅ Optimizar imágenes: convertir JPG/PNG → WebP
 async function optimizeImages() {
 	if (fs.existsSync(filesImg)) {
 		console.log("🚀 Convirtiendo JPG/PNG → WebP...");
 
-		// Convertir y guardar como WebP
 		await imagemin([`${filesImg}/*.{jpg,jpeg,png}`], {
 			destination: assetsImg,
 			plugins: [
@@ -101,8 +115,6 @@ async function optimizeImages() {
 		});
 
 		console.log("✅ JPG/PNG convertidos a WebP");
-
-		// Reemplazar rutas en HTML y CSS
 		updateImagePathsInFiles();
 	}
 }
@@ -110,11 +122,10 @@ async function optimizeImages() {
 // ✅ Reemplazar .jpg/.jpeg/.png por .webp en HTML y CSS
 function updateImagePathsInFiles() {
 	const filesToCheck = [
-		path.join(__dirname, "index.html"),
-		path.join(__dirname, "css", "styles.css"),
+		path.join(src, "index.html"),
+		path.join(src, "css", "styles.css"),
 	];
 
-	// Expresión regular para detectar rutas con .jpg, .jpeg, .png
 	const regex = /(\.\/assets\/img\/[^"' ]*)\.(jpg|jpeg|png)(?=["' ])/g;
 
 	filesToCheck.forEach((filePath) => {
@@ -124,10 +135,7 @@ function updateImagePathsInFiles() {
 		}
 
 		let content = fs.readFileSync(filePath, "utf8");
-
-		// Reemplazar todas las coincidencias: cambia .jpg → .webp, .png → .webp, etc.
 		content = content.replace(regex, "$1.webp");
-
 		fs.writeFileSync(filePath, content);
 		console.log(`✅ Extensiones actualizadas a .webp en: ${filePath}`);
 	});
@@ -146,7 +154,7 @@ function compressMusic() {
 			const outputOptimized = outputFile.replace(".mp3", "-temp.mp3");
 
 			ffmpeg(filePath)
-				.audioBitrate("64k")
+				.audioBitrate("80k")
 				.outputFormat("mp3")
 				.save(outputOptimized)
 				.on("end", () => {
@@ -167,14 +175,19 @@ function compressMusic() {
 // ✅ Ejecutar todo
 async function build() {
 	try {
-		console.log("🧹 Limpiando carpetas anteriores...");
-		if (fs.existsSync(assets)) fs.rmSync(assets, { recursive: true });
+		console.log("🧹 Limpiando carpetas de assets...");
+
+		// ❌ No elimines src/assets, solo vacía img y music
+		emptyDir(assetsImg);
+		emptyDir(assetsMusic);
+
+		// ✅ Asegurar que las carpetas estén vacías pero existan
 		ensureDir(assetsImg);
 		ensureDir(assetsMusic);
 
-		copyNonWebpImages(); // Copia SVG, etc. (sin duplicar con WebP)
-		await optimizeImages(); // Convierte JPG/PNG → WebP
-		compressMusic(); // Comprime MP3
+		copyNonWebpImages();
+		await optimizeImages();
+		compressMusic();
 
 		// Reporte final
 		setTimeout(() => {

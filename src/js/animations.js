@@ -1,4 +1,5 @@
-// js/animations.js
+// --- 2. Importar GSAP ---
+import { gsap } from "gsap";
 
 export function animarDresscode() {
 	// Movimiento lateral + rotación

@@ -1,4 +1,5 @@
-// index.js
+// src/js/index.js
+
 import {
 	mostrarFechaFormateada,
 	mostrarFechaMaximaConfirmacion,

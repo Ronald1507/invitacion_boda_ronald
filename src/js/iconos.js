@@ -1,4 +1,6 @@
-// iconos.js
+// --- 3. Importar Lottie ---
+import lottie from "lottie-web";
+
 export function cargarIconos() {
 	const iconos = [
 		{ id: "icono-calendar", path: "/assets/animations/calendario.json" },
