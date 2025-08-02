@@ -1,21 +1,20 @@
-// --- 1. Importar Swiper ---
-import { Swiper } from "swiper";
-import "swiper/css"; // Estilos base de Swiper
-import "swiper/css/navigation"; // Estilos de navegación
-import "swiper/css/pagination"; // Estilos de paginación
+// swiperSetup.js
+import Swiper from "swiper";
+import { Autoplay, Pagination } from "swiper/modules";
 
+import "swiper/css";
+import "swiper/css/pagination";
+
+// Inicializar Swiper con módulos
 export function initSwiper() {
 	new Swiper(".mySwiper", {
+		modules: [Autoplay, Pagination], // 🔥 Módulos obligatorios
 		loop: true,
 		spaceBetween: 16,
 		centeredSlides: true,
 		autoplay: {
 			delay: 3000,
 			disableOnInteraction: false,
-		},
-		navigation: {
-			nextEl: ".swiper-button-next",
-			prevEl: ".swiper-button-prev",
 		},
 		pagination: {
 			el: ".swiper-pagination",

@@ -13,7 +13,6 @@
 	--fuenteTitulo: "Great Vibes", cursive;
 	--fuenteTextos: "Arapey", serif;
 	--fuenteBotonesEspeciales: "Cormorant Garamond", serif;
-	--fondoPantallaMobile: url("../assets/img/fondo_celeste_mobile_vacio.webp");
 	--fondoPantalla: url("../assets/img/fondo_pantalla_final.webp");
 	--fondoPortada: url("../assets/img/foto_manos.webp"); /* Fondo de portada */
 }
@@ -35,16 +34,13 @@ html {
 body {
 	font-family: var(--fuenteTextos);
 	background-image: var(--fondoPantalla);
+	background-color: var(--blancoCrema);
 	color: var(--dorado);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	font-weight: normal;
-}
-@media (max-width: 767px) {
-	body {
-		background-image: var(--fondoPantallaMobile);
-	}
+	background-position: center;
 }
 
 /* ================================
