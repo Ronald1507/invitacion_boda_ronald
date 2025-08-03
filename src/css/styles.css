@@ -321,7 +321,7 @@ Seccion padres y padrinos
 .bloque-bendicion {
 	border-radius: 12px;
 	padding: 0.5rem;
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 	transition: transform 0.3s ease;
 	border: 2px solid var(--dorado);
 }
@@ -694,7 +694,7 @@ Foto manos y cita biblica
 	max-width: 500px;
 	border-radius: 8px;
 	padding: 1rem;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 	overflow: hidden;
 	position: relative; /* necesario para posicionar el botón */
 	border: 2px solid var(--dorado);
