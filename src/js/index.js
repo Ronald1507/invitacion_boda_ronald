@@ -1,4 +1,6 @@
 // src/js/index.js
+import "../css/mapChooser.css";
+import { openMapChooser } from "./mapChooser.js";
 
 import {
 	mostrarFechaFormateada,
@@ -22,4 +24,15 @@ window.addEventListener("DOMContentLoaded", () => {
 	animarDresscode();
 	enableCopyButtons();
 	enviarMensajeConfirmacion();
+
+	const btnMapa = document.getElementById("btnMapa");
+	if (btnMapa) {
+		btnMapa.addEventListener("click", () => {
+			openMapChooser({
+				lat: -37.51495475752657,
+				lng: -73.40882242191483,
+				label: "Casa Lucía",
+			});
+		});
+	}
 });
