@@ -1,15 +1,18 @@
 // swiperSetup.js
 import Swiper from "swiper";
-import { Autoplay, Pagination, Navigation } from "swiper/modules"; // 👈 Agregado Navigation
-
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation"; // 👈 Importa también el CSS del módulo Navigation
+import "swiper/css/navigation";
 
-// Inicializar Swiper con módulos
+let swiperInstance = null; // evita inicializarlo más de una vez
+
 export function initSwiper() {
-	new Swiper(".mySwiper", {
-		modules: [Autoplay, Pagination], // 👈 Incluye Navigation
+	// Si ya existe, no volver a crearlo
+	if (swiperInstance) return;
+
+	swiperInstance = new Swiper(".mySwiper", {
+		modules: [Autoplay, Pagination, Navigation],
 		loop: true,
 		spaceBetween: 16,
 		centeredSlides: true,
@@ -21,5 +24,11 @@ export function initSwiper() {
 			el: ".swiper-pagination",
 			clickable: true,
 		},
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
 	});
+
+	// console.log("✅ Swiper inicializado");
 }

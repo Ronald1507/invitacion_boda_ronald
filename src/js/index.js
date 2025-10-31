@@ -18,7 +18,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	mostrarFechaFormateada();
 	updateCountdown();
 	initMusicPlayer();
-	initSwiper();
 	mostrarFechaMaximaConfirmacion();
 	cargarIconos();
 	animarDresscode();
@@ -34,5 +33,26 @@ window.addEventListener("DOMContentLoaded", () => {
 				label: "Casa Lucía",
 			});
 		});
+	}
+	// --- 💞 Swiper: inicializar solo al llegar a la sección "Nuestra Historia" ---
+	const historiaSection = document.querySelector(".historia");
+	if (historiaSection) {
+		if ("IntersectionObserver" in window) {
+			const observer = new IntersectionObserver(
+				(entries, observer) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							initSwiper();
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.3 }
+			);
+			observer.observe(historiaSection);
+		} else {
+			// 🔙 Si el navegador no soporta IntersectionObserver
+			initSwiper();
+		}
 	}
 });
