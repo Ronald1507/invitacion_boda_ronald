@@ -20,6 +20,7 @@ export default defineConfig({
 	// Opcional: servidor de desarrollo
 	server: {
 		port: 3000,
+		host: "0.0.0.0",
 		open: true,
 	},
 });
