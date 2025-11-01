@@ -71,7 +71,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				scrollDownText.style.opacity = "0";
 				scrollDownText.style.pointerEvents = "none";
 				scrollDownText.style.animation = "none";
-				console.log("🔻 Texto ocultado correctamente");
+				// console.log("🔻 Texto ocultado correctamente");
 				ocultado = true; // se oculta solo una vez
 			}
 		});
