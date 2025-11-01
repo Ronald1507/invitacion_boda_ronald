@@ -152,6 +152,38 @@ body {
 	opacity: 0.9;
 	margin: 0 auto 2rem;
 }
+.scroll-down {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	font-family: "Cormorant Garamond", serif;
+	font-size: 1.1rem;
+	opacity: 0.9;
+	animation: fadeArrow 1.5s infinite;
+	transition: opacity 0.8s ease;
+}
+
+.scroll-down.hidden {
+	opacity: 0 !important;
+	pointer-events: none;
+	animation: none !important;
+	transform: translate(-50%, 0);
+}
+
+/* Efecto de aparición */
+@keyframes fadeArrow {
+	0%,
+	100% {
+		opacity: 0.3;
+		transform: translate(-50%, 0);
+	}
+	50% {
+		opacity: 1;
+		transform: translate(-50%, -8px);
+	}
+}
 
 /* ================================
    2. Imagen anillo

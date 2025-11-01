@@ -55,4 +55,25 @@ window.addEventListener("DOMContentLoaded", () => {
 			initSwiper();
 		}
 	}
+	const scrollDownText = document.querySelector(".scroll-down");
+	const heroHeader = document.querySelector(".hero-header");
+
+	if (scrollDownText && heroHeader) {
+		let ocultado = false;
+
+		window.addEventListener("scroll", () => {
+			// Calculamos qué parte del header sigue visible
+			const headerBottom = heroHeader.getBoundingClientRect().bottom;
+
+			if (!ocultado && headerBottom < window.innerHeight * 0.5) {
+				// Cuando la parte baja del header está por encima de la mitad de la pantalla
+				scrollDownText.style.transition = "opacity 0.8s ease";
+				scrollDownText.style.opacity = "0";
+				scrollDownText.style.pointerEvents = "none";
+				scrollDownText.style.animation = "none";
+				console.log("🔻 Texto ocultado correctamente");
+				ocultado = true; // se oculta solo una vez
+			}
+		});
+	}
 });
