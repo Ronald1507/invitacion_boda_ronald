@@ -1,4 +1,5 @@
 // countdown.js
+import { config } from "../data/config.js";
 import {
 	obtenerFechaBoda,
 	formatearFecha,
@@ -43,7 +44,7 @@ export function updateCountdown() {
 		countdownElement.innerHTML = `
             <section>
                 <span>🎉</span>
-                <p class='section-title'>¡Es hoy, prepárate!</p>
+                <p class='section-title'>${config.countdown.esHoy}</p>
             </section>`;
 		return;
 	}
@@ -53,7 +54,7 @@ export function updateCountdown() {
 		countdownElement.innerHTML = `
             <section>
                 <span>💍</span>
-                <p class='section-title'>¡La boda ya pasó y estuvo espectacular!</p>
+                <p class='section-title'>${config.countdown.yaPaso}</p>
             </section>`;
 		return;
 	}

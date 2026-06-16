@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Darlyn & Ronald</title>
+
+    <!-- SEO / Open Graph (inyectado desde src/data/config.js en build y dev) -->
+    <title>%SEO_TITLE%</title>
+    <meta name="description" content="%SEO_DESCRIPTION%" />
+    <meta name="theme-color" content="%THEME_COLOR%" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="%SEO_TITLE%" />
+    <meta property="og:description" content="%SEO_DESCRIPTION%" />
+    <meta property="og:image" content="%SEO_IMAGE%" />
+    <meta property="og:url" content="%SEO_URL%" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%SEO_TITLE%" />
+    <meta name="twitter:description" content="%SEO_DESCRIPTION%" />
+    <meta name="twitter:image" content="%SEO_IMAGE%" />
+
     <link rel="stylesheet" href="css/styles.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,11 +42,11 @@
     <!-- 1. Portada -->
     <header class="hero-header">
         <div class="hero-content">
-            <h2 class="title">¡Nos casamos!</h2>
-            <h1 class="names">Darlyn & Ronald</h1>
-            <p class="invitation">Con mucha felicidad, te invitamos a ser parte de este gran día...</p>
+            <h2 class="title" data-text="portada.titulo"></h2>
+            <h1 class="names" data-text="nombresNovios"></h1>
+            <p class="invitation" data-text="portada.mensaje"></p>
         </div>
-        <p class="scroll-down">Desliza hacia abajo</p>
+        <p class="scroll-down" data-text="portada.textoScroll"></p>
     </header>
 
     <section class="anillo">
@@ -39,37 +55,23 @@
 
     <!-- 2. Fecha -->
     <section class="section calendar">
-        <h2 class="titulo">Te esperamos el día</h2>
+        <h2 class="titulo" data-text="seccionFecha.titulo"></h2>
         <p id="wedding-date"></p>
         <p id="wedding-hour"></p>
-        <img class="calendario" src="./assets/img/calendario_sin_fondo_negrita.webp" alt="Imagen boda" loading="lazy" />
+        <img class="calendario" src="./assets/img/calendario_sin_fondo_negrita.webp" alt="Calendario de la boda"
+            loading="lazy" />
+        <!-- Botones "Agregar al calendario" (generados por calendar.js) -->
+        <div class="calendar-actions" id="calendar-actions"></div>
     </section>
 
     <!-- 3. Nuestra historia -->
     <section class="section historia">
-        <h2 class="titulo">Nuestra Historia</h2>
+        <h2 class="titulo" data-text="historia.titulo"></h2>
         <div class="historia-layout">
             <!-- CARRUSEL SWIPER -->
             <div class="carousel-section">
                 <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="./assets/img/1_animada.webp" alt="Foto 6" loading="lazy" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="./assets/img/2_animada.webp" alt="Foto 8" loading="lazy" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="./assets/img/4_animada.webp" alt="Foto 10" loading="lazy" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="./assets/img/3_animada.webp" alt="Foto 9" loading="lazy" />
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="./assets/img/5_animada.webp" alt="Foto 10" loading="lazy" />
-                        </div>
-                    </div>
+                    <div class="swiper-wrapper" id="swiper-wrapper"></div>
                     <!-- Paginación -->
                     <div class="swiper-pagination"></div>
                 </div>
@@ -77,71 +79,27 @@
 
             <!-- TEXTO -->
             <div class="historia-texto">
-                <p class="texto-general">
-                    "Han pasado ya 13 años desde que comenzó nuestra historia, una que nadie imaginó que se volvería
-                    eterna. En este viaje, lleno de subidas y bajadas, hemos aprendido a caminar tomados de la mano, sin
-                    soltarnos. Cada paso, cada prueba y cada alegría nos ha hecho más fuertes, porque no estamos solos:
-                    Dios ha sido siempre el centro de nuestro amor y de esta hermosa familia que juntos hemos
-                    construido."
-                </p>
+                <p class="texto-general" data-text="historia.texto"></p>
             </div>
         </div>
     </section>
 
+    <!-- 4. Bendición: padres y padrinos -->
     <section class="section bendicion">
-        <h3 class="titulo texto-bendicion-dios">Con la bendición de nuestros padres y padrinos</h3>
+        <h3 class="titulo texto-bendicion-dios" data-text="bendicion.tituloSuperior"></h3>
 
-        <div class="bendicion-grid">
-            <div class="bloque-bendicion">
-                <h4 class="texto-general">Padres Novio</h4>
-                <p class="texto-general">Pedro Fuentes Sanhueza</p>
-                <p class="texto-general">Johanna Urra Fontalba</p>
-            </div>
-            <div class="bloque-bendicion">
-                <h4 class="texto-general">Padres Novia</h4>
-                <p class="texto-general">Luis García Alarcón</p>
-                <p class="texto-general">Ruth Inzunza Toloza</p>
-            </div>
-            <div class="bloque-bendicion">
-                <h4 class="texto-general">Padrinos Novio</h4>
-                <p class="texto-general">Rodrigo Ruiz Ceballos</p>
-                <p class="texto-general">Francisca Hernández Inzunza</p>
-            </div>
-            <div class="bloque-bendicion">
-                <h4 class="texto-general">Padrinos Novia</h4>
-                <p class="texto-general">Pedro Ortega Muñoz</p>
-                <p class="texto-general">Gemmita Peñailillo Jara</p>
-            </div>
-        </div>
+        <div class="bendicion-grid" id="bendicion-grid"></div>
 
-        <h3 class="titulo texto-bendicion-dios">Pero por sobre todo con la bendición de <strong>Dios</strong></h3>
+        <h3 class="titulo texto-bendicion-dios" data-html="bendicion.tituloInferior"></h3>
     </section>
 
-
-
-    <!-- 4. Ubicación -->
+    <!-- 5. Ubicación -->
     <section class="section">
         <div class="icono-gps" id="icono-gps"></div>
-        <h2 class="titulo">
-            Lugar
-        </h2>
-        <p class="texto-general">
-            La ceremonia se celebrará en el
-            Centro de Eventos "Casa Lucia", ubicado en Pichiarauco S/N, Curanilahue
-        </p>
-
+        <h2 class="titulo" data-text="lugar.titulo"></h2>
+        <p class="texto-general" data-text="lugar.descripcion"></p>
 
         <div class="ubicacion-container">
-            <!-- <a href="https://www.google.com/maps/place/Casa+Luc%C3%ADa/@-37.5149597,-73.4113981,17z/data=!3m1!4b1!4m6!3m5!1s0x966a01df5075add3:0xe2d3077da93bce4c!8m2!3d-37.514964!4d-73.4088232!16s%2Fg%2F11wjdnlrmh?entry=ttu&g_ep=EgoyMDI1MDcxMy4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank" rel="noopener noreferrer" class="btn-ver-ubicacion">
-                <svg class="animated-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
-                    fill="currentColor">
-                    <path
-                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                </svg>
-                <span>Ver en mapa</span>
-            </a> -->
-
             <a id="btnMapa" target="_blank" rel="noopener noreferrer" class="btn-ver-ubicacion">
                 <svg class="animated-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
                     fill="currentColor">
@@ -153,12 +111,11 @@
         </div>
     </section>
 
-    <!-- 5. Cuenta regresiva -->
+    <!-- 6. Cuenta regresiva -->
     <section class="section-countdown">
         <div class="calendar-icon" id="icono-calendar"></div>
         <div class="header-countdown">
-
-            <h2 id="faltan" class="titulo">Cuenta regresiva</h2>
+            <h2 id="faltan" class="titulo" data-text="countdown.titulo"></h2>
         </div>
         <div class="countdown-container">
             <div class="countdown-card">
@@ -184,134 +141,55 @@
         </div>
     </section>
 
-    <!-- Foto Manos y Cita biblica -->
+    <!-- 7. Foto manos y cita bíblica -->
     <section class="section">
-        <h2 class="titulo"></h2>
         <div class="historia-contenido container">
             <div class="foto-historia">
-                <img src="./assets/img/foto_manos.webp" alt="D&R" loading="lazy" />
+                <img src="./assets/img/foto_manos.webp" alt="Manos de los novios" loading="lazy" />
             </div>
 
             <div class="cita-biblica">
-                <p>
-                    Por esto dejará el hombre a su padre y a su madre, y se unirá a su mujer,
-                    y los dos serán una sola carne.
-                </p>
-                <strong class="referencia-biblica">Efesios 5:31</strong>
+                <p data-text="citaBiblica.texto"></p>
+                <strong class="referencia-biblica" data-text="citaBiblica.referencia"></strong>
             </div>
         </div>
     </section>
 
-
-
-    <!-- 6. Dresscode -->
+    <!-- 8. Dresscode -->
     <section class="section dresscode-section">
-        <h2 class="titulo">Dresscode</h2>
+        <h2 class="titulo" data-text="dresscode.titulo"></h2>
         <div class="dresscode-contenido">
-
             <img src="./assets/img/dresscode.svg" alt="Dresscode" class="dresscode-img" loading="lazy">
-
-            <p class="texto-general texto-dress-code">
-                Ellos traje formal deberán usar, ellas de vestido largo estarán...
-                y juntos puntualmente tendrán que estar.
-                En colores, lo que quieran menos color blanco o similar.
-                Eso se lo dejamos a la novia. ¡Solo prepárate para pasarlo bien!
-            </p>
+            <p class="texto-general texto-dress-code" data-text="dresscode.texto"></p>
         </div>
     </section>
 
-    <!-- 7. Datos de regalo -->
+    <!-- 9. Regalos -->
     <section class="section regalos-section">
-        <h2 class="titulo">Regalos</h2>
+        <h2 class="titulo" data-text="regalos.titulo"></h2>
 
         <div class="regalos-contenido">
             <div class="regalo-icon" id="icono-regalo"></div>
-
-            <div class="texto-regalos">
-                <p class="texto-general">
-                    El mayor regalo para nosotros es que nos acompañes en este día especial,
-                    que marca el inicio de un nuevo capítulo en nuestra historia.
-                </p>
-                <p class="texto-general">
-                    Sin embargo, si deseas tener un detalle con nosotros, puedes hacerlo a través de
-                    sobres o transferencias,
-                    lo que nos ayudará a darle forma a esta nueva etapa de nuestras vidas.
-                </p>
-                <p class="texto-general">
-                    ¡Gracias por ser parte de este sueño que estamos construyendo!
-                </p>
-            </div>
+            <div class="texto-regalos" id="texto-regalos"></div>
         </div>
     </section>
 
+    <!-- 9.1 Datos bancarios (generados por render.js) -->
+    <section class="section info-banco" id="info-banco"></section>
 
-    <section class="section info-banco">
-        <div class="bloque-banco">
-            <button class="copy-btn" aria-label="Copiar datos">
-                <!-- Ícono copiar SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor"
-                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-            </button>
-
-            <p class="parrafo-banco"><strong>Banco:</strong> Banco de Chile</p>
-            <p class="parrafo-banco"><strong>Cuenta:</strong> Corriente</p>
-            <p class="parrafo-banco"><strong>Nombre:</strong> Ronald Fuentes</p>
-            <p class="parrafo-banco"><strong>N° Cuenta:</strong> 00-146-02743-04</p>
-            <p class="parrafo-banco"><strong>RUT:</strong> 20.088.089-7</p>
-            <p class="parrafo-banco"><strong>Correo:</strong> rpfu1999@gmail.com</p>
-        </div>
-
-        <div class="bloque-banco">
-            <button class="copy-btn" aria-label="Copiar datos">
-                <!-- Ícono copiar SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor"
-                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-            </button>
-
-            <p class="parrafo-banco"><strong>Banco:</strong> Banco Estado</p>
-            <p class="parrafo-banco"><strong>Cuenta:</strong> RUT</p>
-            <p class="parrafo-banco"><strong>Nombre:</strong> Darlyn García</p>
-            <p class="parrafo-banco"><strong>N° Cuenta:</strong> 00019849439</p>
-            <p class="parrafo-banco"><strong>RUT:</strong> 19.849.439-9</p>
-            <p class="parrafo-banco"><strong>Correo:</strong> ddgarciainzunza1998@gmail.com</p>
-        </div>
-    </section>
-
-
-
-    <!-- 8. Contacto WhatsApp -->
+    <!-- 10. Confirmación de asistencia -->
     <section class="section">
-        <h2 class="titulo">Confirma tu asistencia</h2>
+        <h2 class="titulo" data-text="confirmacion.titulo"></h2>
+        <p class="texto-general" id="confirmacion-intro"></p>
         <p class="texto-general">
-            Tu presencia es muy importante para nosotros. Te pedimos por favor
-            nos puedas confirmar tu asistencia hasta el día
-            <strong id="diaMaximoConfirmacion"></strong>
+            <strong data-text="confirmacion.llamado"></strong>
         </p>
-        <p class="texto-general">
-            <strong>Presiona aquí para confirmar tu asistencia</strong>
-        </p>
-        <div class="whatsapp-buttons">
-            <a href="#" target="_blank" class="contact-button" data-phone="56988393234" data-name="Ronald">
-                <img src="./assets/img/whatsapp_dorado.webp" alt="WhatsApp Ronald" loading="lazy" />
-                <span>Ronald</span>
-            </a>
-
-            <a href="#" target="_blank" class="contact-button" data-phone="56974363255" data-name="Darlyn">
-                <img src="./assets/img/whatsapp_dorado.webp" alt="WhatsApp Darlyn" loading="lazy" />
-                <span>Darlyn</span>
-            </a>
-        </div>
+        <div class="whatsapp-buttons" id="whatsapp-buttons"></div>
     </section>
 
-    <!-- 9. Reproductor de música -->
+    <!-- 11. Reproductor de música -->
     <audio autoplay id="bg-music" muted>
-        <source src="assets/music/contigo_siempre.mp3" type="audio/mpeg" />
+        <source id="bg-music-source" src="" type="audio/mpeg" />
         Tu navegador no soporta el audio.
     </audio>
 
@@ -319,15 +197,14 @@
         <div class="envelope-wrapper">
             <div class="envelope">
                 <div class="letter">
-                    <h2>Darlyn & Ronald</h2>
-                    <button id="start-music-btn">Abrir</button>
+                    <h2 data-text="musica.tituloModal"></h2>
+                    <button id="start-music-btn" data-text="musica.textoBoton"></button>
                 </div>
             </div>
         </div>
     </div>
 
-    <button id="toggle-music-btn" class="music-toggle-btn" style="display: none;">
-        <i class="fas fa-pause"></i>
+    <button id="toggle-music-btn" class="music-toggle-btn" style="display: none;" aria-label="Reproducir o pausar música">
     </button>
 
     <script type="module" src="js/index.js"></script>

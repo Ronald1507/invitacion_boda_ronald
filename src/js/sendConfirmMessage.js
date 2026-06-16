@@ -1,3 +1,5 @@
+import { config } from "../data/config.js";
+
 export function enviarMensajeConfirmacion() {
 	const botones = document.querySelectorAll(
 		".whatsapp-buttons .contact-button"
@@ -7,7 +9,10 @@ export function enviarMensajeConfirmacion() {
 		const nombre = btn.dataset.name; // Ronald, Darlyn
 		const phone = btn.dataset.phone;
 
-		const mensaje = `Hola ${nombre} 😊 Me encantaría confirmar mi asistencia en este día tan importante para ustedes. ¡Nos vemos! 🎉💍`;
+		const mensaje = config.confirmacion.plantillaMensaje.replace(
+			"{nombre}",
+			nombre
+		);
 
 		const link = `https://api.whatsapp.com/send/?phone=${phone}&text=${encodeURIComponent(
 			mensaje

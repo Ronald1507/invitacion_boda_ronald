@@ -1,5 +1,9 @@
 // src/js/index.js
 import "../css/mapChooser.css";
+
+import { config } from "../data/config.js";
+import { renderInvitacion } from "./render.js";
+import { aplicarTema } from "./theme.js";
 import { openMapChooser } from "./mapChooser.js";
 
 import {
@@ -13,8 +17,18 @@ import { initSwiper } from "./swiperSetup.js";
 import { animarDresscode } from "./animations.js";
 import { enableCopyButtons } from "./helpers.js";
 import { enviarMensajeConfirmacion } from "./sendConfirmMessage.js";
+import { initCalendario } from "./calendar.js";
+import { initReveal } from "./reveal.js";
+
+// El tema puede aplicarse de inmediato (no depende del DOM construido)
+aplicarTema();
 
 window.addEventListener("DOMContentLoaded", () => {
+	// 1) Generar el contenido dinámico ANTES de inicializar lo demás,
+	//    porque crea los nodos sobre los que trabajan los módulos siguientes.
+	renderInvitacion();
+
+	// 2) Inicializadores que dependen del DOM ya construido
 	mostrarFechaFormateada();
 	updateCountdown();
 	initMusicPlayer();
@@ -23,18 +37,22 @@ window.addEventListener("DOMContentLoaded", () => {
 	animarDresscode();
 	enableCopyButtons();
 	enviarMensajeConfirmacion();
+	initCalendario();
+	initReveal();
 
+	// Botón "Ver en mapa" → selector Google Maps / Waze
 	const btnMapa = document.getElementById("btnMapa");
 	if (btnMapa) {
 		btnMapa.addEventListener("click", () => {
 			openMapChooser({
-				lat: -37.51495475752657,
-				lng: -73.40882242191483,
-				label: "Casa Lucía",
+				lat: config.lugar.lat,
+				lng: config.lugar.lng,
+				label: config.lugar.nombre,
 			});
 		});
 	}
-	// --- 💞 Swiper: inicializar solo al llegar a la sección "Nuestra Historia" ---
+
+	// Swiper: inicializar sólo al llegar a la sección "Nuestra Historia"
 	const historiaSection = document.querySelector(".historia");
 	if (historiaSection) {
 		if ("IntersectionObserver" in window) {
@@ -51,10 +69,11 @@ window.addEventListener("DOMContentLoaded", () => {
 			);
 			observer.observe(historiaSection);
 		} else {
-			// 🔙 Si el navegador no soporta IntersectionObserver
 			initSwiper();
 		}
 	}
+
+	// Ocultar el "Desliza hacia abajo" al avanzar el scroll
 	const scrollDownText = document.querySelector(".scroll-down");
 	const heroHeader = document.querySelector(".hero-header");
 
@@ -62,17 +81,14 @@ window.addEventListener("DOMContentLoaded", () => {
 		let ocultado = false;
 
 		window.addEventListener("scroll", () => {
-			// Calculamos qué parte del header sigue visible
 			const headerBottom = heroHeader.getBoundingClientRect().bottom;
 
 			if (!ocultado && headerBottom < window.innerHeight * 0.5) {
-				// Cuando la parte baja del header está por encima de la mitad de la pantalla
 				scrollDownText.style.transition = "opacity 0.8s ease";
 				scrollDownText.style.opacity = "0";
 				scrollDownText.style.pointerEvents = "none";
 				scrollDownText.style.animation = "none";
-				// console.log("🔻 Texto ocultado correctamente");
-				ocultado = true; // se oculta solo una vez
+				ocultado = true;
 			}
 		});
 	}

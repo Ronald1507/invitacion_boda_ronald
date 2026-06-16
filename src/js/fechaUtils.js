@@ -1,7 +1,10 @@
 // fechaUtils.js
-export const DIA_BODA = "2026-02-07";
-export const HORA_BODA = "19:00:00";
-export const FECHA_MAX_CONFIRMACION = "2026-01-03";
+// Las fechas viven en src/data/config.js (fuente única de verdad).
+import { config } from "../data/config.js";
+
+export const DIA_BODA = config.fecha.dia;
+export const HORA_BODA = config.fecha.hora;
+export const FECHA_MAX_CONFIRMACION = config.fecha.maxConfirmacion;
 
 export function obtenerFechaBoda() {
 	return new Date(`${DIA_BODA}T${HORA_BODA}`);

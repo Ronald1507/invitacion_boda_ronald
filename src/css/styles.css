@@ -953,5 +953,82 @@ Foto manos y cita biblica
 }
 
 /* ================================
-   13. Otros estilos generales y media queries
+   13. Agregar al calendario
+   ================================ */
+.calendar-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+	margin: 1.5rem auto 0;
+}
+
+.btn-calendario {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	background-color: var(--azulOscuro);
+	color: var(--dorado);
+	border: 2px solid var(--dorado);
+	padding: 10px 18px;
+	border-radius: 30px;
+	font-size: clamp(1rem, 2.5vw, 1.3rem);
+	font-family: var(--fuenteBotonesEspeciales);
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-calendario:hover {
+	background-color: var(--dorado);
+	color: var(--azulOscuro);
+	transform: scale(1.05);
+}
+
+.btn-calendario svg {
+	width: 20px;
+	height: 20px;
+}
+
+/* ================================
+   14. Aparición suave de secciones (reveal)
+   ================================ */
+/* El estado oculto sólo aplica cuando JS lo activa (clase en <html>),
+   así que sin JS las secciones se ven con normalidad. */
+.js-reveal .reveal {
+	opacity: 0;
+	transform: translateY(24px);
+	transition: opacity 0.7s ease, transform 0.7s ease;
+	will-change: opacity, transform;
+}
+
+.js-reveal .reveal.reveal-visible {
+	opacity: 1;
+	transform: none;
+}
+
+/* ================================
+   15. Accesibilidad: reducir movimiento
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.js-reveal .reveal {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* ================================
+   16. Otros estilos generales y media queries
    ================================ */
