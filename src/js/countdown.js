@@ -42,9 +42,9 @@ export function updateCountdown() {
 	if (esHoy(fechaBoda)) {
 		faltan.textContent = "";
 		countdownElement.innerHTML = `
-            <section>
-                <span>🎉</span>
-                <p class='section-title'>${config.countdown.esHoy}</p>
+            <section class="countdown-mensaje">
+                <span class="countdown-emoji">🎉</span>
+                <p class="section-title">${config.countdown.esHoy}</p>
             </section>`;
 		return;
 	}
@@ -52,9 +52,9 @@ export function updateCountdown() {
 	if (diff <= 0) {
 		faltan.textContent = "";
 		countdownElement.innerHTML = `
-            <section>
-                <span>💍</span>
-                <p class='section-title'>${config.countdown.yaPaso}</p>
+            <section class="countdown-mensaje">
+                <span class="countdown-emoji">💍</span>
+                <p class="section-title">${config.countdown.yaPaso}</p>
             </section>`;
 		return;
 	}

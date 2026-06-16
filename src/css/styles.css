@@ -529,6 +529,50 @@ Seccion padres y padrinos
 	}
 }
 
+/* Mensaje cuando es hoy / ya pasó la boda */
+.countdown-mensaje {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem;
+	width: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	padding: 2rem 1.5rem;
+	border: 3px solid var(--dorado);
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.05);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.countdown-emoji {
+	font-size: clamp(3.5rem, 12vw, 6rem);
+	line-height: 1;
+	animation: emojiPulse 2s ease-in-out infinite;
+}
+
+.countdown-mensaje .section-title {
+	font-family: var(--fuenteBotonesEspeciales);
+	font-size: clamp(1.6rem, 5vw, 2.8rem);
+	font-weight: bold;
+	line-height: 1.3;
+	color: var(--dorado);
+	text-align: center;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+	margin: 0;
+}
+
+@keyframes emojiPulse {
+	0%,
+	100% {
+		transform: scale(1) rotate(0deg);
+	}
+	50% {
+		transform: scale(1.12) rotate(-4deg);
+	}
+}
+
 .header-countdown {
 	display: flex;
 	justify-content: center; /* centra todo el grupo horizontalmente */
